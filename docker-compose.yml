@@ -9,12 +9,10 @@ services:
     environment:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=secret
-    container_name: db
   nextcloud:
     image: nextcloud:fpm
     links:
       - db
-    container_name: nextcloud
     volumes:
       - nextcloud:/var/www/html
     restart: always
@@ -27,7 +25,6 @@ services:
       - db
   web:
     image: nginx:alpine
-    container_name: web
     ports:
       - 8080:80
     links:
