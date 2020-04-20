@@ -33,11 +33,18 @@ services:
     links:
       - nextcloud
     volumes:
-      - /nginx.conf:/etc/nginx/nginx.conf:ro
       - nextcloud:/var/www/html
     restart: always
     depends_on:
       - nextcloud
+    configs:
+      - source: nginx_config
+        target: /etc/nginx/nginx.conf
+        
+configs:
+  nginx_config:
+    file: ./nginx.conf
+    
 volumes:
   db:
   nextcloud:
