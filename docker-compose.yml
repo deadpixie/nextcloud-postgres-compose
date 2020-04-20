@@ -9,7 +9,7 @@ services:
     environment:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=secret
-  nextcloud:
+  app:
     image: nextcloud:fpm
     links:
       - db
@@ -35,12 +35,12 @@ services:
     depends_on:
       - nextcloud
     configs:
-      - source: nginx_config
+      - source: nginx_config_ext
         target: /etc/nginx/nginx.conf
         
 configs:
-  nginx_config:
-    file: ./nginx.conf
+  nginx_config_ext:
+    external: true
     
 volumes:
   db:
