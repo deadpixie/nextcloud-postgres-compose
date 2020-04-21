@@ -3,7 +3,6 @@ version: '3.5'
 services:
   db:
     image: postgres:latest
-    restart: always
     volumes:
       - db:/var/lib/postgresql/data
     environment:
@@ -11,15 +10,12 @@ services:
       - POSTGRES_PASSWORD=secret
   app:
     image: nextcloud:fpm
-    links:
-      - db
     volumes:
       - type: volume
         source: nextcloud_NFS
         target: /var/www/html
         volume:
           nocopy: true
-    restart: always
     environment:
       - POSTGRES_HOST=db
       - POSTGRES_DB=nextcloud
@@ -31,15 +27,12 @@ services:
     image: nginx:alpine
     ports:
       - 8080:80
-    links:
-      - nextcloud
     volumes: 
       - type: volume
         source: nextcloud_NFS
         target: /var/www/html
         volume:
           nocopy: true
-    restart: always
     depends_on:
       - nextcloud
     configs:
