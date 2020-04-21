@@ -13,7 +13,7 @@ services:
     volumes:
       - type: volume
         source: nextcloud_NFS
-        target: /var/www/html
+        target: /var/www/html:Z
         volume:
           nocopy: true
     environment:
@@ -30,7 +30,7 @@ services:
     volumes: 
       - type: volume
         source: nextcloud_NFS
-        target: /var/www/html
+        target: /var/www/html:Z
         volume:
           nocopy: true
     depends_on:
@@ -52,6 +52,6 @@ volumes:
     driver_opts:
       type: "nfs"
       o: "addr=nas02.macworx.de,nolock,soft,rw,noatime,rsize=8192,wsize=8192,tcp,timeo=14"
-      device: ":/mnt/zfs_pool01/nextcloud_storage:z"
+      device: ":/mnt/zfs_pool01/nextcloud_storage"
   nginx:
 
