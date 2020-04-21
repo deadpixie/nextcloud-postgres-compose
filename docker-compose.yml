@@ -29,8 +29,12 @@ services:
       - 8080:80
     links:
       - nextcloud
-    volumes:
-      - nextcloud:/var/www/html
+    volumes: 
+      - type: volume
+        source: nextcloud_NFS
+        target: /var/www/html
+        volume:
+          nocopy: true
     restart: always
     depends_on:
       - nextcloud
@@ -45,4 +49,12 @@ configs:
 volumes:
   db:
   nextcloud:
+    external: true
+  nextcloud_NFS:
+    driver: local
+    driver_opts:
+      type: "nfs"
+      o: "addr=nas02.macworx.de,nolock,soft,rwnoatime,rsize=8192,wsize=8192,tcp,timeo=14"
+      device: ":/mnt/zfs_pool01/nextcloud_storage"
   nginx:
+
