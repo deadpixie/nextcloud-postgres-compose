@@ -11,7 +11,7 @@ services:
   app:
     image: nextcloud:fpm
     volumes:
-      - nextcloud_NFS:/var/www/html:Z
+      - nextcloud_NFS:/var/www/html
     environment:
       - POSTGRES_HOST=db
       - POSTGRES_DB=nextcloud
@@ -24,7 +24,7 @@ services:
     ports:
       - 8080:80
     volumes:
-      - nextcloud_NFS:/var/www/html:Z
+      - nextcloud_NFS:/var/www/html
     depends_on:
       - nextcloud
     configs:
