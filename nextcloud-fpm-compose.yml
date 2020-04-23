@@ -9,7 +9,9 @@ services:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=secret
   app:
-    image: nextcloud:fpm
+    image: nextcloud:apache
+    ports:
+      - 8080:80
     volumes:
       - nextcloud_NFS:/var/www/html
     environment:
@@ -19,21 +21,7 @@ services:
       - POSTGRES_PASSWORD=secret
     depends_on:
       - db
-  web:
-    image: nginx:alpine
-    ports:
-      - 8080:80
-    volumes:
-      - nextcloud_NFS:/var/www/html
-    depends_on:
-      - nextcloud
-    configs:
-      - source: nginx_config_ext
-        target: /etc/nginx/nginx.conf
-        
-configs:
-  nginx_config_ext:
-    external: true
+
     
 volumes:
   db:
