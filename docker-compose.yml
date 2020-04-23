@@ -11,11 +11,7 @@ services:
   app:
     image: nextcloud:fpm
     volumes:
-      - type: volume
-        source: nextcloud_NFS
-        target: /var/www/html
-        volume:
-          nocopy: true
+      - nextcloud_NFS:/var/www/html:Z
     environment:
       - POSTGRES_HOST=db
       - POSTGRES_DB=nextcloud
@@ -27,12 +23,8 @@ services:
     image: nginx:alpine
     ports:
       - 8080:80
-    volumes: 
-      - type: volume
-        source: nextcloud_NFS
-        target: /var/www/html
-        volume:
-          nocopy: true
+    volumes:
+      - nextcloud_NFS:/var/www/html:Z
     depends_on:
       - nextcloud
     configs:
