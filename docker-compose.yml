@@ -30,7 +30,7 @@ services:
     volumes: 
       - type: volume
         source: nextcloud_NFS
-        target: /var/www/html:Z
+        target: /var/www/html
         volume:
           nocopy: true
     depends_on:
