@@ -9,8 +9,8 @@ services:
     volumes:
       - db:/var/lib/mysql
     environment:
-      - MYSQL_ROOT_PASSWORD=
-      - MYSQL_PASSWORD=
+      - MYSQL_ROOT_PASSWORD=good.riddance
+      - MYSQL_PASSWORD=ridd.goodance
       - MYSQL_DATABASE=nextcloud
       - MYSQL_USER=nextcloud
   app:
@@ -22,7 +22,7 @@ services:
       - nextcloud_local:/var/www/html
     environment:
       - MYSQL_HOST=db
-      - MYSQL_PASSWORD=
+      - MYSQL_PASSWORD=ridd.goodance
       - MYSQL_DATABASE=nextcloud
       - MYSQL_USER=nextcloud
     depends_on:
