@@ -18,7 +18,7 @@ services:
   app:
     image: nextcloud:apache
     environment:
-       - MYSQL_PASSWORD=nextcloud
+      - MYSQL_PASSWORD=nextcloud
       - MYSQL_DATABASE=nextcloud
       - MYSQL_USER=nextcloud
       - MYSQL_HOST=db
