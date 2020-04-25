@@ -4,8 +4,9 @@ version: '3'
 services:
   db:
     image: mariadb
+    ports:
+      - 8306:3306
     command: --transaction-isolation=READ-COMMITTED --binlog-format=ROW
-    restart: always
     volumes:
       - db:/var/lib/mysql
     environment:
@@ -13,9 +14,11 @@ services:
       - MYSQL_PASSWORD=nextcloud
       - MYSQL_DATABASE=nextcloud
       - MYSQL_USER=nextcloud
+      - MYSQL_HOST=db
   app:
     image: nextcloud:apache
-    restart: always
+    environment:
+      - MYSQL_HOST=db
     ports:
       - 8080:80
     volumes:
