@@ -34,4 +34,3 @@ volumes:
       type: "nfs"
       o: "addr=nas02.macworx.de,nolock,soft,rw,noatime,rsize=8192,wsize=8192,tcp,timeo=14"
       device: ":/mnt/zfs_pool01/nextcloud_storage"
-  nginx:
